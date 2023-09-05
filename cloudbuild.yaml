@@ -6,11 +6,13 @@ steps:
            '.']
 
   # Docker Push
+  # Arfifact Registryにイメージをpush
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',
            'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
 
   # Entrypoint, timeout and environment variables
+  # Arfifact Registryにpushされたイメージから、compute engineを生成
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s

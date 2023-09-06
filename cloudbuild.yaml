@@ -7,7 +7,7 @@ steps:
   - id: "create docker image"
     dir: "/"
     name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', 'myDockerFile']
 
   # Docker Push
   # Arfifact Registryにイメージをpush

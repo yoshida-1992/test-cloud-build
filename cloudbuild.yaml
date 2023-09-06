@@ -17,7 +17,8 @@ steps:
   # Arfifact Registryにイメージをpush
   - id: "push image artifact registry"
     name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+    #args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
+    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image']
 
   # Entrypoint, timeout and environment variables
   # Arfifact Registryにpushされたイメージから、compute engineを生成

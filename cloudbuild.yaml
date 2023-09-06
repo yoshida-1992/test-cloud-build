@@ -10,7 +10,8 @@ steps:
     #args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', 'myDockerFile']
     #args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']   # 最後はDockerfileがどこにあるかを指定。ファイル名はDockerfileにしないとダメらしい
     #args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', "."]  # 最後はDockerfileがどこにあるかを指定する。指定しなければルートにあるとして処理
-    args: ['build', '-t', 'test-repository/${PROJECT_ID}/test-docker-image']
+    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image']
+
 
   # Docker Push
   # Arfifact Registryにイメージをpush

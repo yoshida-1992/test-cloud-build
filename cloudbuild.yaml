@@ -10,7 +10,7 @@ steps:
     #args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']   # 最後はDockerfileがどこにあるかを指定。ファイル名はDockerfileにしないとダメらしい
     # → dockerfile のデフォルトのファイル名は「Dockerfile」ですが、「-f」フラグを使用して変更できます。このフラグには、保存した名前の dockerfile の相対パスが必要です。とのこと。
     #args: ['build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage', '.']  # 最後はDockerfileがどこにあるかを指定する。必ず指定しないとダメでカレントディレクトリであれば'.'を指定
-    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image', '.']  # 送り先は騙されないでね！https://console.cloud.google.com/artifacts?referrer=search&project=yoshida-laboで作ったとしても、リポジトリの中みるとasia-...がパスの階層で一番上にあるから。
+    args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA', '.']  # 送り先は騙されないでね！https://console.cloud.google.com/artifacts?referrer=search&project=yoshida-laboで作ったとしても、リポジトリの中みるとasia-...がパスの階層で一番上にあるから。
 
 
   # Docker Push
@@ -18,7 +18,7 @@ steps:
   - id: "push image artifact registry"
     name: 'gcr.io/cloud-builders/docker'
     #args: ['push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/my-docker-repo/myimage']
-    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image']
+    args: ['push', 'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA']
 
   # Entrypoint, timeout and environment variables
   # Arfifact Registryにpushされたイメージから、compute engineを生成
@@ -26,7 +26,7 @@ steps:
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s
-    args: ['compute', 'instances', 'create-with-container', 'my-vm-name', '--container-image',  'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image']
+    args: ['compute', 'instances', 'create-with-container', 'my-vm-name', '--container-image',  'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=asia-northeast1'
       - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a'

@@ -26,7 +26,7 @@ steps:
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s
-    args: ['compute', 'instances', 'create-with-container', 'my-vm-name', '--container-image',  'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA']
+    args: ['compute', 'instances', 'create-with-container', 'compute-engine-from-cloudbuild', '--container-image',  'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=asia-northeast1'
       - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a'

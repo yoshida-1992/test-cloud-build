@@ -27,8 +27,8 @@ steps:
     timeout: 240s
     args: ['compute', 'instances', 'create-with-container', 'compute-engine-from-cloudbuild', '--container-image',  'asia-northeast1-docker.pkg.dev/${PROJECT_ID}/test-repository/test-docker-image:$COMMIT_SHA']
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=asia-northeast1'
-      - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a'
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       
 options:
     machineType: 'N1_HIGHCPU_8'   
